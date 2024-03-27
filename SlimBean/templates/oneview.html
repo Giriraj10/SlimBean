@@ -1,0 +1,28 @@
+<html>
+<head>
+    {% include 'base.html' %}
+</head>
+<body>
+    <div class="container m-5">
+        <div class="col-sm-6">
+        <h1>This is OneView</h1>
+        <a href="movie/add">
+        <button class="btn btn-primary">Add</button>
+        </a>
+        </div>
+        <h2>Movies</h2>
+    {% for movie in data %}
+    <div class="card m-2" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{movie.title}}</h5>
+          <h6 class="card-subtitle mb-2 text-body-secondary">{{movie.year}}</h6>
+          <h6 class="card-description"><a href="movie/{{movie.id}}">Know More</a></h6>
+        </div>
+    </div>
+    {% endfor %}
+
+    </div>
+
+
+</body>
+</html>

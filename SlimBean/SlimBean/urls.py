@@ -1,9 +1,11 @@
 from django.contrib import admin
 from django.urls import path
-from SlimBean.controller import OneView
-
+from movies import views
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('',OneView.home),
-    path('oneview' , OneView.home_page)
+    path('',views.home),
+    path('oneview' , views.home_page),
+    path('movie/<int:id>' , views.detail_view),
+    path('movie/add',views.add),
+    path('movie/savemovie',views.savemovie)
 ]

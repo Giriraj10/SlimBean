@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include 'base.html' %}
+</head>
+<body>
+    <div class="container m-5">
+        <h1>Create a Movie</h1>
+        <form action="savemovie" method="POST">
+            {% csrf_token %}
+            <input name="id" type="number"/><br>
+        
+            <br><input name="title" type="text"/><br>
+            <br><input name="year" type="number"/><br>
+        
+            <br><textarea name="description"></textarea><br>
+
+            <button class="btn btn-primary" type="submit" >Add</button>
+        </form>
+
+    </div>
+</body>
+</html>
