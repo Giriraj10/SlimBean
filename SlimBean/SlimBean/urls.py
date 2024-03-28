@@ -6,4 +6,6 @@ urlpatterns = [
     path('oneview' , views.home_page),
     path('movie/<int:id>' , views.detail_view), 
     path('movie/add', views.add_movie, name='add_movie'),
+    path('api/movies/', views.MovieListCreateAPIView.as_view(), name='movie-list-create'),
 ]
+

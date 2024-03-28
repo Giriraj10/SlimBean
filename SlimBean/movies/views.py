@@ -6,6 +6,9 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from .forms import MovieForm
 from .models import Movie
+from rest_framework import generics
+from .models import Movie
+from .serializers import MovieSerializer
 
 def home_page(request):
     data = Movie.objects.all()
@@ -27,3 +30,9 @@ def add_movie(request):
     else:
         form = MovieForm() 
     return render(request, 'addmovie.html', {'form': form})
+
+
+
+class MovieListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Movie.objects.all()
+    serializer_class = MovieSerializer
