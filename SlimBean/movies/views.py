@@ -3,12 +3,9 @@ from django.shortcuts import render
 # Create your views here.
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
-
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .forms import MovieForm
 from .models import Movie
-
-def home(request):
-    return HttpResponse("Home!")
 
 def home_page(request):
     data = Movie.objects.all()
@@ -21,16 +18,12 @@ def detail_view(request , id):
 def add(request):
     return render(request , 'addmovie.html')
 
-def savemovie(request):
-    title = request.POST.get('title')
-    year = request.POST.get('year')
-    id = request.POST.get('id')
-    description = request.POST.get('description')
-    if title and year and id:
-        movie = Movie(id= id ,title = title,year = year)
-        if description:
-            movie.description = description
-        movie.save()
-        return HttpResponseRedirect('/oneview')
-    
-    return HttpResponse("Error Saving")
+def add_movie(request):
+    if request.method == 'POST':
+        form = MovieForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/oneview') 
+    else:
+        form = MovieForm() 
+    return render(request, 'addmovie.html', {'form': form})
